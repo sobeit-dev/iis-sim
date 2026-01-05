@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Симулятор ЯМР Тесламетра</title>
+    <style>
+        :root {
+            /* Светлая тема */
+            --bg-main: #f0f2f5;
+            --panel-bg: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --accent: #2196F3;
+            --border: #e0e0e0;
+            
+            /* Цвета сигналов для UI */
+            --color-sig1: #00C853; /* Зеленый */
+            --color-sig2: #FFD600; /* Желтый */
+            --color-sig3: #00B0FF; /* Голубой */
+            --color-sig4: #FF4081; /* Розовый */
+            
+            --status-locked: #00C853;
+            --status-searching: #FF5722;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .links a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #0066cc;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-pause {
+            width: 320px;
+            border-radius: 8px;
+            background: #1565C0;
+            padding: 5px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: white;
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            border: 2px solid transparent;
+        }
+
+        .btn-pause:hover { background: #0d47a1; }
+        .btn-pause.active { background: #f44336; }
+
+        header {
+            background-color: var(--panel-bg);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #1565C0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Controls Panel */
+        .controls {
+            width: 340px;
+            background-color: var(--panel-bg);
+            padding: 15px;
+            overflow-y: auto;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-shrink: 0;
+            box-sizing: border-box;
+        }
+
+        .control-group {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .control-group h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 6px;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+
+        label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin: 8px 0;
+            cursor: pointer;
+            accent-color: var(--accent);
+        }
+
+        .value-display {
+            font-family: 'Consolas', monospace;
+            color: #1976D2;
+            background: #e3f2fd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        
+        .checkbox-label input {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+            accent-color: var(--accent);
+        }
+
+        /* Lock Status Indicator */
+        .lock-indicator {
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: white;
+            transition: all 0.3s ease;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+            border: 2px solid transparent;
+        }
+
+        .status-locked {
+            background-color: var(--status-locked);
+            border-color: #009624;
+            box-shadow: 0 0 10px rgba(0, 200, 83, 0.3);
+        }
+
+        .status-searching {
+            background-color: var(--status-searching);
+            border-color: #D84315;
+            animation: pulse-border 1.5s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% { border-color: #D84315; box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.4); }
+            70% { border-color: #D84315; box-shadow: 0 0 0 6px rgba(255, 87, 34, 0); }
+            100% { border-color: #D84315; box-shadow: 0 0 0 0 rgba(255, 87, 34, 0); }
+        }
+
+        /* Digital Displays */
+        .display-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .digital-display {
+            background: #222;
+            color: #ff3333; /* 7-segment red */
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.6rem;
+            text-align: center;
+            padding: 8px;
+            border: 3px solid #999;
+            border-radius: 6px;
+            text-shadow: 0 0 5px rgba(255, 51, 51, 0.5);
+            letter-spacing: 2px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+        }
+        
+        .digital-display.error-display {
+            font-size: 1.2rem;
+            color: #ff80ab;
+            border-color: #666;
+            padding: 6px;
+        }
+
+        .display-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        /* Oscilloscope Area */
+        .scopes-container {
+            flex: 1;
+            padding: 15px;
+            display: grid;
+            grid-template-rows: repeat(4, 1fr);
+            gap: 15px;
+            overflow-y: auto;
+            background-color: #eef1f5;
+        }
+
+        .scope-wrapper {
+            background-color: #121212; /* Keep scopes dark for contrast */
+            border: 1px solid #999;
+            border-radius: 6px;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 140px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .scope-legend {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            border: 1px solid #444;
+            color: #eee;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-color {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            box-shadow: 0 0 5px currentColor;
+        }
+
+        .scope-title {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            font-size: 0.8rem;
+            color: #aaa;
+            background: rgba(0,0,0,0.6);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .status-bar {
+            padding: 8px 20px;
+            background: #fff;
+            font-size: 0.8rem;
+            color: #555;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+        </svg>
+        Тесламетр на основе ЯМР
+    </h1>
+
+    <span class="links">
+        <a href="./teory.html" target="_blank" rel="noopener noreferrer">Теория</a>
+        <a href="./scheme.html" target="_blank" rel="noopener noreferrer">Схема</a>
+        <a href="./maths.html" target="_blank" rel="noopener noreferrer">Расчеты</a>
+    </span>
+</header>
+
+<div class="main-container">
+    <div class="controls">
+        
+        <div id="lock-status-box" class="lock-indicator status-searching"></div>
+
+        <div class="control-group">
+            <h3>1. Магнитное поле</h3>
+            <label>
+                Постоянное поле
+                <span id="val-B0" class="value-display"></span>
+            </label>
+            <input type="range" id="inp-B0" min="0.001" max="5" step="0.001" value="1">
+
+            <label>
+                Переменное поле (Модуляция)
+                <span id="val-Bm" class="value-display"></span>
+            </label>
+            <input type="range" id="inp-Bm" min="0.1" max="3" step="0.1" value="0.5">
+
+            <label>
+                Частота переменного поля
+                <span id="val-fm" class="value-display"></span>
+            </label>
+            <input type="range" id="inp-fm" min="1" max="100" step="1" value="50.0">
+        </div>
+
+        <div class="control-group">
+            <h3>2. Генератор частоты (ГУН)</h3>
+            <label class="checkbox-label">
+                <input type="checkbox" id="inp-lock" checked>
+                <span>Автозахват частоты</span>
+            </label>
+            
+            <label>
+                Частота
+                <span id="val-fvco" class="value-display"></span>
+            </label>
+            <input type="range" id="inp-fvco" min="0" max="250" step="0.01" value="35.0">
+        </div>
+
+        <div class="control-group">
+            <h3>3. Петля ФАПЧ</h3>
+            <label>
+                Усиление петли
+                <span id="val-gain" class="value-display">5.0 x</span>
+            </label>
+            <input type="range" id="inp-gain" min="1" max="50" step="1" value="20">
+            <small style="color:#666; font-size:0.75rem;">Увеличьте для более жесткого захвата</small>
+            
+            <label>
+                Постоянная времени ФНЧ
+                <span id="val-tau" class="value-display">0.5 с</span>
+            </label>
+            <input type="range" id="inp-tau" min="0.05" max="2.0" step="0.05" value="0.2">
+        </div>
+
+        <div class="control-group">
+            <h3>Результат</h3>
+            <div class="display-container" style="margin-top: 5px;">
+                <div class="display-label">Напряжение ошибки (ФНЧ):</div>
+                <div id="display-error" class="digital-display error-display">+0.00 V</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scopes-container">
+        <!-- Scope 1: Modulation & Resonance -->
+        <div class="scope-wrapper">
+            <div class="scope-title">Частота (резонанса и ГУНа) от времени</div>
+            <div class="scope-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--color-sig1);"></div>
+                    <span>F_рез(t)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #fff; border: 1px dashed #666;" id="legend-vco"></div>
+                    <span>F_гун(t)</span>
+                </div>
+            </div>
+            <canvas id="scope1"></canvas>
+        </div>
+
+        <!-- Scope 2: AM Detector Output -->
+        <div class="scope-wrapper">
+            <div class="scope-title">Напряжение (на выходе амплитудного детектора) от времени</div>
+            <div class="scope-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--color-sig2);"></div>
+                    <span>U_ам(t)</span>
+                </div>
+            </div>
+            <canvas id="scope2"></canvas>
+        </div>
+
+        <!-- Scope 3: Phase Detector Output -->
+        <div class="scope-wrapper">
+            <div class="scope-title">Напряжение (на выходе фазового детектора) от времени</div>
+            <div class="scope-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--color-sig3);"></div>
+                    <span>U_фд(t)</span>
+                </div>
+            </div>
+            <canvas id="scope3"></canvas>
+        </div>
+
+        <!-- Scope 4: LPF Output (Error Signal) -->
+        <div class="scope-wrapper">
+            <div class="scope-title">Напряжение (на выходе ФНЧ) от времени</div>
+            <div class="scope-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: var(--color-sig4);"></div>
+                    <span>U_ошибки(t)</span>
+                </div>
+            </div>
+            <canvas id="scope4"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="status-bar">
+    <button id="btn-pause" class="btn-pause">
+        <span id="pause-text">ПАУЗА</span>
+    </button>
+    <span id="fps-counter" style="font-family: monospace;">FPS: 60</span>
+</div>
+
+<script>
+    // --- Математические константы ---
+    const PI = Math.PI;
+    const R_CONST = 42.577478518; // Гиромагнитное отношение МГц\Тс
+
+    // --- Явное определение цветов для JS ---
+    const SIGNAL_COLORS = [
+        '#00C853', // Зеленый (f_rez)
+        '#FFD600', // Желтый (AM)
+        '#00B0FF', // Голубой (PD)
+        '#FF4081'  // Розовый (Error)
+    ];
+
+    // --- Состояние симуляции ---
+    const state = {
+        t: 0,           // Глобальное время
+        B0: 1.0,        // Постоянное поле
+        Bm: 0.5,        // Амплитуда модуляции
+        fm: 50.0,        // Частота модуляции (Гц)
+        
+        f_vco: 42.0,    // Текущая частота ГУН
+        lockMode: true, // Режим автоподстройки
+        isLocked: false, // Флаг текущего состояния захвата
+        
+        gain: 20.0,     // Коэффициент усиления петли
+        tau: 0.2,       // Постоянная времени ФНЧ
+        paused: false,
+        
+        // Текущие значения сигналов
+        sig: {
+            f_rez: 0,
+            am: 0,
+            pd: 0,
+            lpf: 0
+        }
+    };
+
+    // --- Буферы данных ---
+    const BUFFER_SIZE = 800; 
+    const buffers = {
+        f_rez: new Float32Array(BUFFER_SIZE),
+        f_vco: new Float32Array(BUFFER_SIZE),
+        am: new Float32Array(BUFFER_SIZE),
+        pd: new Float32Array(BUFFER_SIZE),
+        lpf: new Float32Array(BUFFER_SIZE),
+        time: new Float32Array(BUFFER_SIZE)
+    };
+
+    // --- Интерфейс ---
+    const ui = {
+        inp_B0: document.getElementById('inp-B0'),
+        val_B0: document.getElementById('val-B0'),
+        inp_Bm: document.getElementById('inp-Bm'),
+        val_Bm: document.getElementById('val-Bm'),
+        inp_fm: document.getElementById('inp-fm'),
+        val_fm: document.getElementById('val-fm'),
+        inp_lock: document.getElementById('inp-lock'),
+        inp_fvco: document.getElementById('inp-fvco'),
+        val_fvco: document.getElementById('val-fvco'),
+        inp_gain: document.getElementById('inp-gain'),
+        val_gain: document.getElementById('val-gain'),
+        inp_tau: document.getElementById('inp-tau'),
+        val_tau: document.getElementById('val-tau'),
+        displayError: document.getElementById('display-error'),
+        fps: document.getElementById('fps-counter'),
+        lockStatusBox: document.getElementById('lock-status-box'),
+        legendVco: document.getElementById('legend-vco'),
+        btnPause: document.getElementById('btn-pause'),
+        pauseText: document.getElementById('pause-text')
+    };
+
+    function updateStateFromUI() {
+        state.B0 = parseFloat(ui.inp_B0.value);
+        state.Bm = parseFloat(ui.inp_Bm.value);
+        state.fm = parseFloat(ui.inp_fm.value);
+        state.lockMode = ui.inp_lock.checked;
+        state.gain = parseFloat(ui.inp_gain.value);
+        state.tau = parseFloat(ui.inp_tau.value);
+
+        ui.val_B0.textContent = state.B0.toFixed(3) + " Тл";
+        ui.val_Bm.textContent = state.Bm.toFixed(2) + " Тл";
+        ui.val_fm.textContent = state.fm.toFixed(1) + " Гц";
+        ui.val_gain.textContent = state.gain.toFixed(1) + " x";
+        ui.val_tau.textContent = state.tau.toFixed(2) + " с";
+
+        if (state.lockMode) {
+            ui.inp_fvco.disabled = true;
+            ui.inp_fvco.style.opacity = "0.6";
+            ui.val_fvco.textContent = state.f_vco.toFixed(4) + " МГц";
+            ui.inp_fvco.value = state.f_vco; 
+        } else {
+            ui.inp_fvco.disabled = false;
+            ui.inp_fvco.style.opacity = "1";
+            state.f_vco = parseFloat(ui.inp_fvco.value);
+            ui.val_fvco.textContent = state.f_vco.toFixed(4) + " МГц";
+        }
+
+        // Обновление индикатора захвата
+        if (state.isLocked && state.lockMode) {
+            ui.lockStatusBox.textContent = "ЧАСТОТА ЗАХВАЧЕНА";
+            ui.lockStatusBox.className = "lock-indicator status-locked";
+            ui.legendVco.style.backgroundColor = "#fa4728"; // Green dot
+            ui.legendVco.style.borderColor = "transparent";
+        } else {
+            ui.lockStatusBox.textContent = "ЧАСТОТА НЕ ЗАХВАЧЕНА";
+            ui.lockStatusBox.className = "lock-indicator status-searching";
+            ui.legendVco.style.backgroundColor = "transparent";
+            ui.legendVco.style.borderColor = "#666";
+        }
+    }
+
+    Object.values(ui).forEach(el => {
+        if (el instanceof HTMLInputElement) {
+            el.addEventListener('input', updateStateFromUI);
+        }
+    });
+
+    ui.btnPause.onclick = () => {
+        state.paused = !state.paused;
+        ui.btnPause.classList.toggle('active', state.paused);
+        ui.pauseText.textContent = state.paused ? 'ПУСК' : 'ПАУЗА';
+    };
+
+    // --- Класс Осциллографа ---
+    class Oscilloscope {
+        constructor(canvasId, config) {
+            this.canvas = document.getElementById(canvasId);
+            this.ctx = this.canvas.getContext('2d', { alpha: false });
+            this.config = Object.assign({
+                minY: -1, maxY: 1,
+                gridColor: '#fff',
+                labelColor: '#fff',
+                yUnit: '',
+                autoScale: false
+            }, config);
+            this.resize();
+            window.addEventListener('resize', () => this.resize());
+        }
+
+        resize() {
+            const rect = this.canvas.parentElement.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            this.width = rect.width;
+            this.height = rect.height;
+            this.canvas.width = this.width * dpr;
+            this.canvas.height = this.height * dpr;
+            this.ctx.scale(dpr, dpr);
+        }
+
+        draw(dataSets, colors) {
+            const ctx = this.ctx;
+            const w = this.width;
+            const h = this.height;
+
+            ctx.fillStyle = '#121212';
+            ctx.fillRect(0, 0, w, h);
+
+            if (this.config.autoScale && dataSets.length > 0) {
+                let min = Infinity, max = -Infinity;
+                const d = dataSets[0];
+                for(let i=0; i<d.length; i+=10) { 
+                    if (d[i] < min) min = d[i];
+                    if (d[i] > max) max = d[i];
+                }
+                const range = (max - min);
+                const margin = range * 0.5 || 0.5; 
+                this.config.minY = this.lerp(this.config.minY, min - margin, 0.01);
+                this.config.maxY = this.lerp(this.config.maxY, max + margin, 0.01);
+            }
+
+            this.drawGrid(w, h);
+
+            const rangeY = this.config.maxY - this.config.minY;
+            const scaleY = rangeY === 0 ? 1 : h / rangeY;
+            const offsetY = this.config.minY;
+
+            dataSets.forEach((data, idx) => {
+                ctx.beginPath();
+                ctx.strokeStyle = colors[idx];
+                ctx.lineWidth = 2.5;
+                
+                if (colors[idx] === 'dashed') {
+                    // Если захват есть, делаем линию зеленой и сплошной
+                    if (state.isLocked && state.lockMode) {
+                         ctx.strokeStyle = '#fa4728';
+                         ctx.setLineDash([]); 
+                         ctx.lineWidth = 3;
+                         ctx.globalAlpha = 0.8;
+                    } else {
+                        ctx.setLineDash([4, 4]);
+                        ctx.strokeStyle = '#ffffff';
+                        ctx.lineWidth = 2;
+                        ctx.globalAlpha = 0.7;
+                    }
+                } else {
+                    ctx.setLineDash([]);
+                    ctx.globalAlpha = 1.0;
+                }
+
+                const len = data.length;
+                const stepX = w / (len - 1);
+
+                for (let i = 0; i < len; i++) {
+                    const x = i * stepX;
+                    const y = h - (data[i] - offsetY) * scaleY;
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.stroke();
+            });
+            ctx.setLineDash([]);
+            ctx.globalAlpha = 1.0;
+        }
+
+        drawGrid(w, h) {
+            const ctx = this.ctx;
+            const range = this.config.maxY - this.config.minY;
+            ctx.lineWidth = 1;
+            ctx.font = '11px Consolas, monospace';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'bottom';
+            const steps = 4;
+            for (let i = 0; i <= steps; i++) {
+                const r = i / steps;
+                const y = h - r * h;
+                const val = this.config.minY + r * range;
+                ctx.strokeStyle = '#8a8a8a';
+                ctx.beginPath();
+                ctx.moveTo(40, y);
+                ctx.lineTo(w, y);
+                ctx.stroke();
+                ctx.fillStyle = this.config.labelColor;
+                ctx.fillText(val.toFixed(2) + this.config.yUnit, 4, y - 2);
+            }
+        }
+        lerp(start, end, amt) { return (1 - amt) * start + amt * end; }
+    }
+
+    const scopes = [
+        new Oscilloscope('scope1', { autoScale: true, yUnit: ' МГц' }), 
+        new Oscilloscope('scope2', { autoScale: true, yUnit: ' В' }), 
+        new Oscilloscope('scope3', { autoScale: true, yUnit: ' В' }), 
+        new Oscilloscope('scope4', { autoScale: true, yUnit: ' В' })  
+    ];
+
+    // --- ФИЗИКА: Лоренцев контур ---
+    // w - ширина линии на полувысоте. Чем меньше, тем острее пик.
+    function Lorentz(f_gen, f_rez, w) {
+        return 1 - ( 0.85 / ( 1 + Math.pow( (f_gen - f_rez) / (w / 2), 2) ) );
+    }
+
+    let lastTime = 0;
+    
+    function loop(timestamp) 
+    {
+        if (!lastTime) lastTime = timestamp;
+        const dt = (timestamp - lastTime) / (1000 * 2.5); // Замедление времени для наглядности
+        lastTime = timestamp;
+        const safeDt = Math.min(dt, 0.1);
+        ui.fps.textContent = "FPS: " + Math.round(1/safeDt);
+
+        const subSteps = 20; // Больше шагов для точности интегратора
+        const step = safeDt / subSteps;
+
+        if (!state.paused)
+        {
+            for (let i = 0; i < subSteps; i++) {
+            state.t += step;
+
+            const omegaM = 2 * PI * (state.fm / 10);
+            const modulation = Math.sin(omegaM * state.t);
+            
+            // 1. Мгновенная резонансная частота
+            state.sig.f_rez = R_CONST * (state.B0 + state.Bm * modulation);
+
+            // 2. Детектирование (Улучшенная физика)
+            // Мы используем два контура: 
+            // a) "Узкий" (Visual) - реальный физический сигнал ЯМР
+            // b) "Широкий" (Control) - "магнитное поле" ошибки, которое тянет ГУН издалека
+            
+            // Визуальный сигнал (узкий, красивый пик)
+            const widthVisual = 20; 
+            state.sig.am = Lorentz(state.f_vco, state.sig.f_rez, widthVisual);
+
+            // Сигнал для управления (очень широкий захват)
+            // Это позволяет системе чувствовать, в какую сторону двигаться, даже если частота далеко
+            const widthControl = 300; 
+            const am_control = Lorentz(state.f_vco, state.sig.f_rez, widthControl);
+            
+            // Определение состояния захвата
+            // Если мы попадаем в узкую зону (±10 МГц), считаем, что захват есть
+            const diff = Math.abs(state.f_vco - state.sig.f_rez);
+            state.isLocked = diff < (widthVisual * 1.5);
+
+            // 3. Фазовый детектор (Синхронное детектирование)
+            // Смешиваем узкий и широкий сигналы для PID
+            // Когда захват есть, работает в основном узкий. Когда нет - широкий тянет.
+            const signalForPD = state.isLocked ? state.sig.am : (am_control * 2.5); 
+            
+            // Умножаем на модуляцию (reference)
+            // Сигнал AM инвертирован (провал), поэтому умножаем так, чтобы получить S-кривую
+            // (1 - signal) дает нам сам "пик" вместо провала
+            const peakSignal = (1 - signalForPD); 
+            
+            // Простейший фазовый детектор: перемножение
+            state.sig.pd = peakSignal * modulation * state.gain; 
+            
+            // Инверсия знака, чтобы обратная связь была отрицательной
+            // Если f_vco > f_rez, нам нужно уменьшить напряжение
+            state.sig.pd *= -1;
+
+            // 4. ФНЧ (Интегратор)
+            const alpha = step / state.tau;
+            state.sig.lpf += (state.sig.pd - state.sig.lpf) * alpha;
+
+            // 5. Управление ГУН (VCO)
+            if (state.lockMode) {
+                // Адаптивное усиление: если мы далеко (нет захвата), увеличиваем скорость подстройки
+                const adaptiveBoost = state.isLocked ? 1.0 : 5.0; 
+                const K_vco = 50 * adaptiveBoost; 
+                state.f_vco += state.sig.lpf * step * K_vco;
+            }
+        }
+    
+            // Обновление буферов
+            for (const key in buffers) {
+                const buf = buffers[key];
+                buf.copyWithin(0, 1);
+            }
+        }
+
+        const end = BUFFER_SIZE - 1;
+        buffers.f_rez[end] = state.sig.f_rez;
+        buffers.f_vco[end] = state.f_vco;
+        buffers.am[end] = state.sig.am;
+        buffers.pd[end] = state.sig.pd;
+        buffers.lpf[end] = state.sig.lpf;
+        buffers.time[end] = state.t;
+
+
+        if (!state.paused)
+        {
+            // Отрисовка
+            scopes[0].draw([buffers.f_rez, buffers.f_vco], [SIGNAL_COLORS[0], 'dashed']);
+            scopes[1].draw([buffers.am], [SIGNAL_COLORS[1]]);
+            scopes[2].draw([buffers.pd], [SIGNAL_COLORS[2]]);
+            scopes[3].draw([buffers.lpf], [SIGNAL_COLORS[3]]);
+        }
+
+        // Обновление табло ошибки
+        let sum = 0;
+        for (let i = 0; i < buffers.lpf.length; i++) {
+            sum += buffers.lpf[i];
+        }
+        const average = sum / buffers.lpf.length;
+        const sign = average >= 0 ? "+" : "";
+        ui.displayError.textContent = sign + average.toFixed(2) + " В";
+        ui.displayError.style.color = average > 0 ? "#00e676" : "#ff3d00";
+
+        updateStateFromUI();
+        requestAnimationFrame(loop);
+    }
+
+    updateStateFromUI();
+    requestAnimationFrame(loop);
+
+</script>
+
+</body>
+</html>

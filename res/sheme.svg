@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Создано Microsoft Visio, экспорт SVG sheme.svg Page-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="11.7337in" height="6.47709in"
+		viewBox="0 0 844.829 466.351" xml:space="preserve" color-interpolation-filters="sRGB" class="st17">
+	<v:documentProperties v:langID="1049" v:metric="true" v:viewMarkup="false">
+		<v:userDefs>
+			<v:ud v:nameU="msvNoAutoConnect" v:val="VT0(1):26"/>
+		</v:userDefs>
+	</v:documentProperties>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {fill:none;stroke:#000000;stroke-dasharray:11.25,6.75;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st2 {fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:1}
+		.st3 {fill:#000000;font-family:ISOCPEUR;font-size:1.5em}
+		.st4 {font-size:1em}
+		.st5 {fill:#000000;font-family:ISOCPEUR;font-size:1.45834em}
+		.st6 {font-family:JetBrainsMono NF;font-size:1em}
+		.st7 {fill:#000000;font-family:ISOCPEUR;font-size:1.5em;letter-spacing:-0.0555556em}
+		.st8 {fill:#000000;font-family:ISOCPEUR;font-size:1.45834em;letter-spacing:-0.0571425em}
+		.st9 {stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:1}
+		.st10 {marker-start:url(#mrkr3-63);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:1}
+		.st11 {fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.28409090909091}
+		.st12 {marker-end:url(#mrkr3-69);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:1}
+		.st13 {fill:#ffffff;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st14 {fill:#000000;font-family:JetBrainsMono NF;font-size:1.00001em}
+		.st15 {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st16 {fill:#000000;font-family:JetBrainsMono NF;font-size:1.16666em;font-weight:bold}
+		.st17 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs id="Markers">
+		<g id="lend3">
+			<path d="M 2 1 L 0 0 L 2 -1 " style="stroke-linecap:round;stroke-linejoin:round;fill:none"/>
+		</g>
+		<marker id="mrkr3-63" class="st11" v:arrowType="3" v:arrowSize="2" orient="auto" markerUnits="strokeWidth"
+				overflow="visible">
+			<use xlink:href="#lend3" transform="scale(3.52) "/>
+		</marker>
+		<marker id="mrkr3-69" class="st11" v:arrowType="3" v:arrowSize="2" orient="auto" markerUnits="strokeWidth"
+				overflow="visible">
+			<use xlink:href="#lend3" transform="scale(-3.52,-3.52) "/>
+		</marker>
+	</defs>
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<title>Страница-1</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+				v:shadowOffsetY="-8.50394"/>
+		<v:layer v:name="Соединительная линия" v:index="0"/>
+		<g id="shape107-1" v:mID="107" v:groupContext="shape" transform="translate(488.359,-342.593)">
+			<title>Лист.107</title>
+			<path d="M0 466.35 L304.72 466.35 L304.72 362.11 L0 362.11 L0 466.35 Z" class="st1"/>
+		</g>
+		<g id="shape104-3" v:mID="104" v:groupContext="shape" transform="translate(488.359,-18.375)">
+			<title>Лист.104</title>
+			<path d="M0 466.35 L304.72 466.35 L304.72 161.77 L0 161.77 L0 466.35 Z" class="st1"/>
+		</g>
+		<g id="shape103-5" v:mID="103" v:groupContext="shape" transform="translate(166.627,-18.9225)">
+			<title>Лист.103</title>
+			<path d="M0 466.35 L290.55 466.35 L290.55 88.6 L0 88.6 L0 466.35 Z" class="st1"/>
+		</g>
+		<g id="shape1-7" v:mID="1" v:groupContext="shape" transform="translate(24.4695,-64.5275)">
+			<title>Лист.1</title>
+			<desc>ЯМР детектор</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="10.99" y="443.4" class="st3" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>ЯМР детектор</text>		</g>
+		<g id="shape2-10" v:mID="2" v:groupContext="shape" transform="translate(322.107,-64.5275)">
+			<title>Лист.2</title>
+			<desc>ГУН</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="50.44" y="443.4" class="st3" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>ГУН</text>		</g>
+		<g id="shape3-13" v:mID="3" v:groupContext="shape" transform="translate(322.107,-168.937)">
+			<title>Лист.3</title>
+			<desc>ФНЧ</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="48.7" y="443.4" class="st3" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>ФНЧ</text>		</g>
+		<g id="shape4-16" v:mID="4" v:groupContext="shape" transform="translate(173.288,-168.937)">
+			<title>Лист.4</title>
+			<desc>Амплитудный детектор</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="15.63" y="432.6" class="st3" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>Амплитудный <tspan
+						x="28.97" dy="1.2em" class="st4">детектор</tspan></text>		</g>
+		<g id="shape6-20" v:mID="6" v:groupContext="shape" transform="translate(173.288,-273.346)">
+			<title>Лист.6</title>
+			<desc>Усилитель</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="26.07" y="443.4" class="st3" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>Усилитель</text>		</g>
+		<g id="shape7-23" v:mID="7" v:groupContext="shape" transform="translate(322.107,-273.346)">
+			<title>Лист.7</title>
+			<desc>Фазовый детектор</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="32.75" y="432.6" class="st3" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>Фазовый <tspan
+						x="28.97" dy="1.2em" class="st4">детектор</tspan></text>		</g>
+		<g id="shape8-27" v:mID="8" v:groupContext="shape" transform="translate(24.4695,-168.937)">
+			<title>Лист.8</title>
+			<desc>Низкочастотная катушка</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="5.41" y="432.75" class="st5" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>Низкочастотная <tspan
+						x="32.76" dy="1.2em" class="st4">катушка</tspan></text>		</g>
+		<g id="shape11-31" v:mID="11" v:groupContext="shape" transform="translate(523.792,-64.5275)">
+			<title>Лист.11</title>
+			<desc>Компаратор</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="19.69" y="443.4" class="st3" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>Компаратор</text>		</g>
+		<g id="shape12-34" v:mID="12" v:groupContext="shape" transform="translate(658.438,-255.493)">
+			<title>Лист.12</title>
+			<desc>Счетчик</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="34.2" y="443.4" class="st3" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>Счетчик</text>		</g>
+		<g id="shape14-37" v:mID="14" v:groupContext="shape" transform="translate(658.438,-136.14)">
+			<title>Лист.14</title>
+			<desc>Логическая схема «И»</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="22.59" y="432.57" class="st3" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>Логическая <tspan
+						x="23.98" dy="1.203em" class="st4">схема </tspan><tspan class="st6">«</tspan>И<tspan class="st6">»</tspan></text>		</g>
+		<g id="shape15-43" v:mID="15" v:groupContext="shape" transform="translate(495.073,-195.816)">
+			<title>Лист.15</title>
+			<desc>Генератор стробов</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="25.49" y="432.6" class="st3" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>Генератор <tspan
+						x="34.78" dy="1.2em" class="st4">стробов</tspan></text>		</g>
+		<g id="shape16-47" v:mID="16" v:groupContext="shape" transform="translate(495.073,-354.706)">
+			<title>Лист.16</title>
+			<desc>7-ми сегментные индикаторы</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="8.63" y="432.6" class="st7" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>7-ми сегментные <tspan
+						x="25.85" dy="1.2em" class="st4">индикаторы</tspan></text>		</g>
+		<g id="shape17-51" v:mID="17" v:groupContext="shape" transform="translate(658.438,-354.706)">
+			<title>Лист.17</title>
+			<desc>Преобразователь кодов</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="9.52" y="432.75" class="st8" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>Преобразователь <tspan
+						x="46.54" dy="1.2em" class="st4">кодов</tspan></text>		</g>
+		<g id="shape18-55" v:mID="18" v:groupContext="shape" v:layerMember="0" transform="translate(322.107,-85.7874)">
+			<title>Динамическая соединительная линия</title>
+			<path d="M0 459.26 L-170.08 459.26" class="st9"/>
+		</g>
+		<g id="shape22-58" v:mID="22" v:groupContext="shape" v:layerMember="0" transform="translate(230.406,-168.937)">
+			<title>Динамическая соединительная линия.22</title>
+			<path d="M7.09 466.35 L7.09 542.41" class="st10"/>
+		</g>
+		<g id="shape23-64" v:mID="23" v:groupContext="shape" v:layerMember="0" transform="translate(229.981,-225.63)">
+			<title>Динамическая соединительная линия.23</title>
+			<path d="M7.09 466.35 L7.09 418.63" class="st12"/>
+		</g>
+		<g id="shape24-70" v:mID="24" v:groupContext="shape" v:layerMember="0" transform="translate(300.847,-294.606)">
+			<title>Динамическая соединительная линия.24</title>
+			<path d="M0 459.26 L21.26 459.26" class="st12"/>
+		</g>
+		<g id="shape25-75" v:mID="25" v:groupContext="shape" v:layerMember="0" transform="translate(378.8,-273.346)">
+			<title>Динамическая соединительная линия.25</title>
+			<path d="M7.09 466.35 L7.09 514.07" class="st12"/>
+		</g>
+		<g id="shape26-80" v:mID="26" v:groupContext="shape" v:layerMember="0" transform="translate(378.8,-168.937)">
+			<title>Динамическая соединительная линия.26</title>
+			<path d="M7.09 466.35 L7.09 514.07" class="st12"/>
+		</g>
+		<g id="shape27-85" v:mID="27" v:groupContext="shape" v:layerMember="0" transform="translate(449.666,-85.7874)">
+			<title>Динамическая соединительная линия.27</title>
+			<path d="M0 459.26 L74.13 459.26" class="st12"/>
+		</g>
+		<g id="shape32-90" v:mID="32" v:groupContext="shape" v:layerMember="0" transform="translate(658.438,-375.966)">
+			<title>Динамическая соединительная линия.32</title>
+			<path d="M0 459.26 L-35.81 459.26" class="st12"/>
+		</g>
+		<g id="shape33-95" v:mID="33" v:groupContext="shape" transform="translate(24.4695,-273.346)">
+			<title>Лист.33</title>
+			<desc>Генератор НЧ колебаний</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="438.004" width="127.56" height="56.6929"/>
+			<rect x="0" y="409.658" width="127.559" height="56.6929" class="st2"/>
+			<text x="12.73" y="432.6" class="st3" v:langID="1049"><v:paragraph v:horizAlign="1"/><v:tabList/>Генератор НЧ <tspan
+						x="26.65" dy="1.2em" class="st4">колебаний</tspan></text>		</g>
+		<g id="shape34-99" v:mID="34" v:groupContext="shape" v:layerMember="0" transform="translate(81.1624,-273.346)">
+			<title>Динамическая соединительная линия.34</title>
+			<path d="M7.09 466.35 L7.09 514.07" class="st12"/>
+		</g>
+		<g id="shape40-104" v:mID="40" v:groupContext="shape" transform="translate(389.147,-133.877)">
+			<title>Лист.40</title>
+			<desc>U_ошибки(t)</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="44.9323" cy="455.149" width="89.87" height="22.4037"/>
+			<rect x="0" y="443.947" width="89.8647" height="22.4037" class="st13"/>
+			<text x="4" y="458.75" class="st14" v:langID="1049"><v:paragraph/><v:tabList/>U_ошибки(t)</text>		</g>
+		<g id="shape41-107" v:mID="41" v:groupContext="shape" transform="translate(451.509,-95.8578)">
+			<title>Лист.41</title>
+			<desc>F_гун(t)</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="34.8661" cy="455.149" width="69.74" height="22.4037"/>
+			<rect x="0" y="443.947" width="69.7323" height="22.4037" class="st13"/>
+			<text x="6.07" y="458.75" class="st14" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>F<tspan class="st4"
+						v:langID="1049">_гун(</tspan>t<tspan class="st4" v:langID="1049">)</tspan></text>		</g>
+		<g id="shape43-112" v:mID="43" v:groupContext="shape" transform="translate(389.147,-238.622)">
+			<title>Лист.43</title>
+			<desc>U_фд(t)</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="44.9323" cy="455.149" width="89.87" height="22.4037"/>
+			<rect x="0" y="443.947" width="89.8647" height="22.4037" class="st15"/>
+			<text x="4" y="458.75" class="st14" v:langID="1049"><v:paragraph/><v:tabList/>U_фд(t)</text>		</g>
+		<g id="shape44-115" v:mID="44" v:groupContext="shape" transform="translate(242.939,-238.622)">
+			<title>Лист.44</title>
+			<desc>U_ам(t)</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="39.7591" cy="455.149" width="79.52" height="22.4037"/>
+			<rect x="0" y="443.947" width="79.5182" height="22.4037" class="st15"/>
+			<text x="4" y="458.75" class="st14" v:langID="1049"><v:paragraph/><v:tabList/>U_ам(t)</text>		</g>
+		<g id="shape45-118" v:mID="45" v:groupContext="shape" v:layerMember="0" transform="translate(88.249,-322.953)">
+			<title>Динамическая соединительная линия.45</title>
+			<path d="M0 459.26 L0 420.42 L297.64 420.42 L297.64 459.26" class="st12"/>
+		</g>
+		<g id="shape46-123" v:mID="46" v:groupContext="shape" transform="translate(192.136,-368.879)">
+			<title>Лист.46</title>
+			<desc>F_мод</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="44.9323" cy="455.149" width="89.87" height="22.4037"/>
+			<rect x="0" y="443.947" width="89.8647" height="22.4037" class="st15"/>
+			<text x="26.93" y="458.75" class="st14" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>F<tspan class="st4"
+						v:langID="1049">_мод</tspan></text>		</g>
+		<g id="shape47-127" v:mID="47" v:groupContext="shape" transform="translate(192.136,-71.2411)">
+			<title>Лист.47</title>
+			<desc>F_гун’(t)</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="44.9323" cy="455.149" width="89.87" height="22.4037"/>
+			<rect x="0" y="443.947" width="89.8647" height="22.4037" class="st15"/>
+			<text x="12.53" y="458.75" class="st14" v:langID="1033"><v:paragraph v:horizAlign="1"/><v:tabList/>F<tspan class="st4"
+						v:langID="1049">_гун</tspan>’<tspan class="st4" v:langID="1049">(</tspan>t<tspan class="st4"
+						v:langID="1049">)</tspan></text>		</g>
+		<g id="shape49-133" v:mID="49" v:groupContext="shape" transform="translate(729.304,-322.244)">
+			<title>Лист.49</title>
+			<desc>Цифровой двоичный код</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="48.5748" cy="455.149" width="97.15" height="22.4037"/>
+			<rect x="0" y="443.947" width="97.1495" height="22.4037" class="st13"/>
+			<text x="4" y="451.55" class="st14" v:langID="1049"><v:paragraph/><v:tabList/>Цифровой <tspan x="4" dy="1.2em"
+						class="st4">двоичный код</tspan></text>		</g>
+		<g id="shape50-137" v:mID="50" v:groupContext="shape" transform="translate(553.17,-282.348)">
+			<title>Лист.50</title>
+			<desc>Сброс-сигнал</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="48.5748" cy="455.149" width="97.15" height="22.4037"/>
+			<rect x="0" y="443.947" width="97.1495" height="22.4037" class="st15"/>
+			<text x="4" y="458.75" class="st14" v:langID="1049"><v:paragraph/><v:tabList/>Сброс-сигнал</text>		</g>
+		<g id="shape88-140" v:mID="88" v:groupContext="shape" transform="translate(553.17,-142.841)">
+			<title>Лист.88</title>
+			<desc>Строб-сигнал</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="48.5748" cy="455.149" width="97.15" height="22.4037"/>
+			<rect x="0" y="443.947" width="97.1495" height="22.4037" class="st15"/>
+			<text x="4" y="458.75" class="st14" v:langID="1049"><v:paragraph/><v:tabList/>Строб-сигнал</text>		</g>
+		<g id="shape94-143" v:mID="94" v:groupContext="shape" v:layerMember="0" transform="translate(658.438,-283.84)">
+			<title>Динамическая соединительная линия.94</title>
+			<path d="M0 466.35 L-99.59 466.35 L-99.59 497.68" class="st10"/>
+		</g>
+		<g id="shape95-148" v:mID="95" v:groupContext="shape" v:layerMember="0" transform="translate(658.438,-164.486)">
+			<title>Динамическая соединительная линия.95</title>
+			<path d="M0 466.35 L-99.59 466.35 L-99.59 435.02" class="st10"/>
+		</g>
+		<g id="shape97-153" v:mID="97" v:groupContext="shape" v:layerMember="0" transform="translate(715.131,-192.833)">
+			<title>Динамическая соединительная линия.97</title>
+			<path d="M7.09 466.35 L7.09 403.69" class="st12"/>
+		</g>
+		<g id="shape99-158" v:mID="99" v:groupContext="shape" v:layerMember="0" transform="translate(722.218,-136.14)">
+			<title>Динамическая соединительная линия.99</title>
+			<path d="M0 466.35 L0 509.62 L-70.87 509.62" class="st10"/>
+		</g>
+		<g id="shape100-163" v:mID="100" v:groupContext="shape" v:layerMember="0" transform="translate(715.131,-312.186)">
+			<title>Динамическая соединительная линия.100</title>
+			<path d="M7.09 466.35 L7.09 423.83" class="st12"/>
+		</g>
+		<g id="shape101-168" v:mID="101" v:groupContext="shape" transform="translate(729.304,-102.559)">
+			<title>Лист.101</title>
+			<desc>Серия импульсов</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="48.5748" cy="455.149" width="97.15" height="22.4037"/>
+			<rect x="0" y="443.947" width="97.1495" height="22.4037" class="st13"/>
+			<text x="4" y="451.55" class="st14" v:langID="1049"><v:paragraph/><v:tabList/>Серия <tspan x="4" dy="1.2em" class="st4">импульсов</tspan></text>		</g>
+		<g id="shape105-172" v:mID="105" v:groupContext="shape" transform="translate(18.375,-18.9225)">
+			<title>Лист.105</title>
+			<path d="M0 466.35 L139.75 466.35 L139.75 88.6 L0 88.6 L0 466.35 Z" class="st1"/>
+		</g>
+		<g id="shape108-174" v:mID="108" v:groupContext="shape" transform="translate(166.627,-18.375)">
+			<title>Лист.108</title>
+			<desc>Петля ФАПЧ</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="54.5669" cy="455.149" width="109.14" height="22.4037"/>
+			<rect x="0" y="443.947" width="109.134" height="22.4037" class="st15"/>
+			<text x="4" y="459.35" class="st16" v:langID="1049"><v:paragraph/><v:tabList/>Петля ФАПЧ</text>		</g>
+		<g id="shape109-177" v:mID="109" v:groupContext="shape" transform="translate(18.375,-18.9225)">
+			<title>Лист.109</title>
+			<desc>Модулятор поля</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.7795" cy="455.149" width="127.56" height="22.4037"/>
+			<rect x="0" y="443.947" width="127.559" height="22.4037" class="st15"/>
+			<text x="4" y="459.35" class="st16" v:langID="1049"><v:paragraph/><v:tabList/>Модулятор поля</text>		</g>
+		<g id="shape110-180" v:mID="110" v:groupContext="shape" transform="translate(488.359,-18.375)">
+			<title>Лист.110</title>
+			<desc>Частотомер (с пересчетом в мТс)</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="152.362" cy="455.149" width="304.73" height="22.4037"/>
+			<rect x="0" y="443.947" width="304.724" height="22.4037" class="st15"/>
+			<text x="4" y="459.35" class="st16" v:langID="1049"><v:paragraph/><v:tabList/>Частотомер (с пересчетом в мТс)</text>		</g>
+		<g id="shape111-183" v:mID="111" v:groupContext="shape" transform="translate(488.359,-425.572)">
+			<title>Лист.111</title>
+			<desc>Вывод результатов измерения</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="152.362" cy="455.149" width="304.73" height="22.4037"/>
+			<rect x="0" y="443.947" width="304.724" height="22.4037" class="st15"/>
+			<text x="4" y="459.35" class="st16" v:langID="1049"><v:paragraph/><v:tabList/>Вывод результатов измерения</text>		</g>
+	</g>
+</svg>

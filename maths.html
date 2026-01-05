@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математическое обоснование работы схемы</title>
+    <script id="MathJax-script" async src="./res/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #4b6cb7, #182848);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaeaea;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        h1 {
+            color: #182848;
+            font-size: 2 rem;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #4b6cb7, #182848);
+            border-radius: 2px;
+        }
+        
+        .subtitle {
+            color: #4b6cb7;
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-top: 10px;
+        }
+        
+        h2 {
+            color: #182848;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaeaea;
+            font-size: 1.8rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        h3 {
+            color: #4b6cb7;
+            margin: 20px 0 10px;
+            font-size: 1.4rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        p {
+            text-align: justify;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.1rem;
+        }
+        
+        .formula-container {
+            background-color: #f8f9fa;
+            border-left: 4px solid #4b6cb7;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .formula {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.3rem;
+            text-align: center;
+            margin: 10px 0;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        
+        .formula mjx-container {
+            text-align: center;
+            display: block !important;
+            margin: 0 auto;
+        }
+        
+        .formula-number {
+            text-align: right;
+            font-style: italic;
+            color: #666;
+            margin-top: 5px;
+            font-size: 0.9rem;
+            visibility: hidden;
+        }
+        
+        .highlight {
+            background-color: #eef2ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #d1d9ff;
+        }
+        
+        .calculation {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2a5caa;
+        }
+        
+        .parameter {
+            display: flex;
+            justify-content: flex-start;
+            padding: 5px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.1rem;
+        }
+        
+        .parameter-name {
+            font-weight: bold;
+            color: #182848;
+            min-width: 50px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .parameter-value {
+            font-family: 'Courier New', monospace;
+            color: #2a5caa;
+            text-align: right;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .section-icon {
+            color: #4b6cb7;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .page-ref {
+            font-size: 0.85rem;
+            color: #888;
+            text-align: right;
+            margin-top: 5px;
+        }
+        
+        .note {
+            background-color: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .math-inline {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+        }
+        
+        .img-container {
+            text-align: center;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .parameter {
+                flex-direction: column;
+            }
+            
+            .parameter-name, .parameter-value {
+                text-align: left;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Математическое обоснование работы схемы</h1>
+        </header>
+        
+        <section> 
+            <p>Вся система представляет собой прецизионный измерительный прибор, где петля ФАПЧ обеспечивает высокую точность и стабильность слежения за резонансной частотой, что является основой для точного измерения магнитного поля.</p>
+            
+            <div class="formula-container">
+                <h3>Резонансная частота</h3>
+                <div class="formula">
+                    $$ f_{\text{рез}} = \frac{\gamma}{2\pi} B_0 $$
+                </div>
+                <div class="formula-number">(2.2)</div>
+                <div class="parameter">
+                    <span class="parameter-name">γ:</span>
+                    <span class="parameter-value">гиромагнитное отношение ядра</span>
+                </div>
+                <div class="parameter">
+                    <span class="parameter-name">B₀:</span>
+                    <span class="parameter-value">измеряемое магнитное поле</span>
+                </div>
+
+            </div>
+            
+            <p>В качестве рабочего тела в ЯМР-датчике используется дистиллированная вода для использования наибольшего гиромагнитного отношения.</p>
+            
+            <div class="formula-container">
+                <h3>Коэффициент для расчётов</h3>
+                <div class="formula">
+                    $$ R = \frac{\gamma}{2\pi} = 42,577 \, \text{МГц/Тл} $$
+                </div>
+                <div class="formula-number">(2.3)</div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Модуляция магнитного поля</h2>
+            
+            <div class="formula-container">
+                <h3>Дополнительная модуляция</h3>
+                <div class="formula">
+                    $$ B_M(t) = B_{0M} \cdot \sin (2\pi \cdot f_M \cdot t + \varphi_{0M}) $$
+                </div>
+                <div class="formula-number">(2.4)</div>
+                <div class="parameter">
+                    <span class="parameter-name">B₀ₘ:</span>
+                    <span class="parameter-value">амплитуда модуляционного колебания</span>
+                </div>
+                <div class="parameter">
+                    <span class="parameter-name">fₘ:</span>
+                    <span class="parameter-value">частота модуляционного колебания</span>
+                </div>
+                <div class="parameter">
+                    <span class="parameter-name">φ₀ₘ:</span>
+                    <span class="parameter-value">начальная фаза модуляционного колебания</span>
+                </div>
+            </div>
+            
+            <div class="formula-container">
+                <h3>Полное магнитное поле с модуляцией</h3>
+                <div class="formula">
+                    $$ B_{\text{п}}(t) = B_0 + B_M(t) $$
+                </div>
+                <div class="formula-number">(2.5)</div>
+            </div>
+            
+            <div class="formula-container">
+                <h3>Резонансная частота после модуляции</h3>
+                <div class="formula">
+                    $$ f_{\text{рез}}(t) = R \cdot B_{\text{п}}(t) = R \cdot (B_0 + B_{0M} \cdot \sin (2\pi \cdot f_M \cdot t + \varphi_{0M})) $$
+                </div>
+                <div class="formula-number">(2.6)</div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Сигнал ГУН и АЧХ ЯМР-датчика</h2>
+            
+            <div class="formula-container">
+                <h3>Сигнал на выходе ГУН</h3>
+                <div class="formula">
+                    $$ U_{\text{гун}}(t) = U_{\text{0гун}} \cdot \sin (2\pi \cdot f_{\text{гун}} \cdot t + \varphi_{\text{0гун}}) $$
+                </div>
+                <div class="formula-number">(2.7)</div>
+            </div>
+            
+            <div class="note">
+                <p>Амплитудно-частотная характеристика ЯМР-датчика имеет вид линии Лоренца: чем ближе частота к резонансной тем меньше амплитуда сигнала (поглощение).</p>
+                <div class="img-container">
+                    <img src="./res/loren.svg" alt="Линия Лоренца" class="svg-image" width="400" height="400">
+                </div>
+            </div>
+            
+            <div class="formula-container">
+                <h3>АЧХ ЯМР-датчика</h3>
+                <div class="formula">
+                    $$ L \left( f_{\text{гун}}, f_{\text{рез}}(t) \right) = 1 - \frac{0.85}{1 + \left( \frac{f_{\text{гун}} - f_{\text{рез}}(t)}{w/2} \right)^2} $$
+                </div>
+                <div class="formula-number">(2.8)</div>
+                <div class="parameter">
+                    <span class="parameter-name">w:</span>
+                    <span class="parameter-value">ширина линии Лоренца, равна 20 Гц</span>
+                </div>
+            </div>
+            
+            <div class="formula-container">
+                <h3>Сигнал после взаимодействия с ЯМР-детектором</h3>
+                <div class="formula">
+                    $$ U_{\text{гун}}(t)' = U_{\text{0гун}} \cdot L \left( f_{\text{гун}}, f_{\text{рез}}(t) \right) \cdot \sin \left( 2\pi \cdot f_{\text{гун}} \cdot t + \varphi_{\text{0гун}} \right) $$
+                </div>
+                <div class="formula-number">(2.9)</div>
+            </div>
+            
+            <div class="formula-container">
+                <h3>Сигнал на выходе амплитудного детектора</h3>
+                <div class="formula">
+                    $$ U_{\text{АМ}}(t) = U_{\text{0гун}} \cdot L \left( f_{\text{гун}}, f_{\text{рез}}(t) \right) $$
+                </div>
+                <div class="formula-number">(2.10)</div>
+            </div>
+            
+            <div class="formula-container">
+                <h3>Сигнал на выходе фазового детектора</h3>
+                <div class="formula">
+                    $$ U_{\text{ФД}}(t) = U_{\text{АМ}}(t) \cdot B_M(t) $$
+                </div>
+                <div class="formula-number">(2.11)</div>
+            </div>
+        </section>
+        
+        <section>
+            <h2>Обработка сигнала и работа ФАПЧ</h2>
+            
+            <div class="formula-container">
+                <h3>Сигнал ошибки после ФНЧ</h3>
+                <div class="formula">
+                    $$ U_{\text{ошибки}}(t) = \int U_{\text{ФД}} (t) \cdot dt $$
+                </div>
+                <div class="formula-number">(2.12)</div>
+            </div>
+            
+            <p>Петля ФАПЧ всегда поддерживает резонансную частоту на выходе ГУН. Результат работы устройства (величина измеряемого магнитного поля) хранится в счетчике и выводится на семисегментные индикаторы.</p>
+        </section>
+        
+        <section>
+            <h2>Расчёт параметров цифровой части</h2>
+            
+            <div class="calculation">
+                <h3>Определение размера счетчика</h3>
+                <p>Предположим, что максимальная частота ГУН равна 250 МГц, и результат хранится в мТл.</p>
+                
+                <div class="formula">
+                    $$ B_{\text{max}} = \frac{f_{\text{гун max}}}{R} = \frac{250 \, \text{МГц}}{42,577 \, \text{МГц/Тл}} = 5872 \, \text{мТл} $$
+                </div>
+                <div class="formula-number">(2.13)</div>
+                
+                <div class="formula">
+                    $$ n \geq \log_2 (B_{\text{max}}); \quad n \geq 12.51 \, \text{бит} $$
+                </div>
+                <div class="formula-number">(2.14)</div>
+                
+                <div class="highlight">
+                    <p><strong>Вывод:</strong> для хранения расчетов тесламетра в мТл необходимо использовать 13-битный счетчик.</p>
+                </div>
+            </div>
+            
+            <div class="calculation">
+                <h3>Выбор длительности стробирующего сигнала</h3>
+                
+                <div class="formula">
+                    $$ f_{\text{рез}} = \frac{N}{T_{\text{строб}}}; \quad f_{\text{рез}} = R \cdot B $$
+                </div>
+                <div class="formula-number">(2.15)</div>
+                
+                <div class="parameter">
+                    <span class="parameter-name">N:</span>
+                    <span class="parameter-value">количество импульсов, которое успел насчитать счетчик за длительность стробирующего сигнала T<sub>строб</sub></span>
+                </div>
+
+                <p>Так как N является результатом работы устройства, т.е. отражает величину измеряемого магнитного поля, нужно чтобы выполнялось условие равенства N и B.</p>
+
+                <div class="formula">
+                    $$ R \cdot B = \frac{N}{T_{\text{строб}}} \Rightarrow R = \frac{1}{T_{\text{строб}}} \Rightarrow T_{\text{строб}} = \frac{1}{R} $$
+                </div>
+                <div class="formula-number">(2.16)</div>
+                
+                <p>Так как результат должен быть в мТл, а размерность T<sub>строб</sub> должна составлять секунды необходимо перевести R из МГц/Тл в Гц/мТл.</p>
+                
+                <div class="formula">
+                    $$ R = 42,577 \frac{\text{МГц}}{\text{Тл}} = 42 577 \frac{\text{Гц}}{\text{мТл}} $$
+                </div>
+                <div class="formula-number">(2.17)</div>
+                
+                <div class="formula">
+                    $$ T_{\text{строб}} = \frac{1}{42 577 \frac{\text{Гц}}{\text{мТл}}} = 23.5 \, \text{мкс} $$
+                </div>
+                <div class="formula-number">(2.18)</div>
+                
+                <div class="highlight">
+                    <p><strong>Вывод:</strong> для прямого пересчета частоты ГУН в мТл длительность стробирующего импульса T<sub>строб</sub> должна составлять 23.5 мкс.</p>
+                    <div class="img-container">
+                        <img src="./res/times.png" alt="Временные соотношения" class="svg-image" width="500" height="400">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script>
+        // Настройка MathJax
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+</body>
+</html>

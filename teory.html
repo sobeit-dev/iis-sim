@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Описание явления ядерного магнитного резонанса</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #4b6cb7, #182848);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaeaea;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        h1 {
+            color: #182848;
+            font-size: 2 rem;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #4b6cb7, #182848);
+            border-radius: 2px;
+        }
+        
+        .subtitle {
+            color: #4b6cb7;
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-top: 10px;
+        }
+        
+        h2 {
+            color: #182848;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #eaeaea;
+            font-size: 1.8rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        h3 {
+            color: #4b6cb7;
+            margin: 20px 0 10px;
+            font-size: 1.4rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        p {
+            text-align: justify;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.2rem;
+            padding: 15px;
+            text-indent: 1.5em;
+        }
+        
+        .formula-container {
+            background-color: #f8f9fa;
+            border-left: 4px solid #4b6cb7;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .formula {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 1.3rem;
+            text-align: center;
+            margin: 10px 0;
+            padding: 10px;
+            overflow-x: auto;
+        }
+        
+        .formula mjx-container {
+            text-align: center;
+            display: block !important;
+            margin: 0 auto;
+        }
+        
+        .formula-number {
+            text-align: right;
+            font-style: italic;
+            color: #666;
+            margin-top: 5px;
+            font-size: 0.9rem;
+            visibility: hidden;
+        }
+        
+        .highlight {
+            background-color: #eef2ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #d1d9ff;
+        }
+        
+        .calculation {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #2a5caa;
+        }
+        
+        .parameter {
+            display: flex;
+            justify-content: flex-start;
+            padding: 5px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.1rem;
+        }
+        
+        .parameter-name {
+            font-weight: bold;
+            color: #182848;
+            min-width: 50px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .parameter-value {
+            font-family: 'Courier New', monospace;
+            color: #2a5caa;
+            text-align: right;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .section-icon {
+            color: #4b6cb7;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .page-ref {
+            font-size: 0.85rem;
+            color: #888;
+            text-align: right;
+            margin-top: 5px;
+        }
+        
+        .note {
+            background-color: #fff8e1;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .math-inline {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+        }
+        
+        .img-container {
+            text-align: center;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .parameter {
+                flex-direction: column;
+            }
+            
+            .parameter-name, .parameter-value {
+                text-align: left;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Описание явления ядерного магнитного резонанса</h1>
+        </header>
+        
+        <section> 
+            <p>В основе работы ядерно-магнитно-резонансных тесламетров лежит явление ЯМР. Оно заключается в резонансном поглощении электромагнитной энергии атомными ядрами в постоянном магнитном поле. Частота поглощения зависит от магнитной индукции поля, что и позволяет проводить измерения.</p>
+
+            <div class="img-container">
+                <img src="./res/calm.png" alt="Свободный" class="svg-image" width="600" height="300">
+            </div>
+            
+            <p>При отсутствии внешнего магнитного поля магнитные моменты ядер в веществе ориентированы хаотично. При помещении образца в поле с определённой индукцией магнитные моменты ядер преимущественно ориентируются вдоль силовых линий этого поля. Однако данная ориентация не является жёсткой. Под действием вращательного момента со стороны магнитного поля ядерный магнитный момент совершает прецессию. Ключевым параметром является частота этой прецессии, которая прямо пропорциональна магнитной индукции.</p>
+
+            <div class="img-container">
+                <img src="./res/hot.png" alt="Резонанс" class="svg-image" width="600" height="300">
+            </div>
+
+            <p>Для определения частоты прецессии применяется метод резонансного поглощения. Помимо постоянного магнитного поля, на образец воздействуют переменным высокочастотным полем, направленным перпендикулярно. Его частота плавно изменяется. При совпадении этой частоты с частотой прецессии ядер наступает резонанс. В этом состоянии ядра эффективно поглощают энергию переменного поля, а угол прецессии достигает максимума.</p>
+            
+            <div class="img-container">
+                <img src="./res/convert.png" alt="Преобразователь" class="svg-image" width="400" height="220">
+            </div>
+
+            <p>Ядерный квантовый преобразователь представляет собой стеклянную ампулу с веществом, атомы которого обладают известным магнитным моментом. Ампула помещена в измерительную катушку, запитываемую переменным напряжением для создания возбуждающего магнитного поля.</p>
+
+            <div class="img-container">
+                <img src="./res/coils.png" alt="Две_катушки" class="svg-image" width="400" height="350">
+            </div>
+
+            <p>Для удобства наблюдения резонанса применяют модуляцию постоянного поля слабым низкочастотным переменным полем, направленным так же, как исследуемое поле. Это приводит к периодическому выполнению резонансного условия, превращая статический резонансный пик в амплитудно-модулированный высокочастотный сигнал с определённой фазой. Данный сигнал можно точно детектировать и использовать в фазовом детекторе для создания системы автоматической подстройки частоты, что невозможно без модуляции.</p>
+    </div>
+</body>
+</html>
